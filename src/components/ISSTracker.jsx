@@ -49,7 +49,7 @@ export default function ISSTracker({ onDataUpdate }) {
 
   const fetchPeople = async () => {
     try {
-      const res = await fetch('http://api.open-notify.org/astros.json');
+      const res = await fetch('/api/astros');
       const data = await res.json();
       setPeople({ total: data.number, names: data.people });
     } catch (err) {
@@ -74,7 +74,7 @@ export default function ISSTracker({ onDataUpdate }) {
   const fetchISSLocation = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://api.open-notify.org/iss-now.json?t=${Date.now()}`, { cache: 'no-store' });
+      const res = await fetch(`/api/iss-now?t=${Date.now()}`, { cache: 'no-store' });
       if (!res.ok) throw new Error('API request failed');
       const data = await res.json();
       
